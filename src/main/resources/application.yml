@@ -7,4 +7,4 @@ app:
       requestToken: https://rest.immobilienscout24.de/restapi/security/oauth/request_token
       accessToken: https://rest.immobilienscout24.de/restapi/security/oauth/access_token
       confirmAccess: https://rest.immobilienscout24.de/restapi/security/oauth/confirm_access
-      callback: https://immobilen-search-bot.herokuapp.com/
+      callback: https://immobilen-search-bot.herokuapp.com/api/immoscout
