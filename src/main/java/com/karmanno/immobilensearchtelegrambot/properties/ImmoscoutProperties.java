@@ -20,5 +20,6 @@ public class ImmoscoutProperties {
         private String requestToken;
         private String accessToken;
         private String confirmAccess;
+        private String callback;
     }
 }
