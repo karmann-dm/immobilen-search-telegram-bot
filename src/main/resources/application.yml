@@ -1,0 +1,10 @@
+app:
+  immoscout:
+    auth:
+      consumerKey: ${CONSUMER_KEY}
+      consumerSecret: ${CONSUMER_SECRET}
+    url:
+      requestToken: https://rest.immobilienscout24.de/restapi/security/oauth/request_token
+      accessToken: https://rest.immobilienscout24.de/restapi/security/oauth/access_token
+      confirmAccess: https://rest.immobilienscout24.de/restapi/security/oauth/confirm_access
+      callback: https://immobilen-search-bot.herokuapp.com/
