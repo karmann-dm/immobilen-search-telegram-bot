@@ -1,6 +1,5 @@
 package com.karmanno.immobilensearchtelegrambot.controller;
 
-import com.karmanno.immobilensearchtelegrambot.ImmoscoutOAuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ImmoscoutController {
     private final OAuthConsumer oAuthConsumer;
     private final OAuthProvider oAuthProvider;
-    private final ImmoscoutOAuthService immoscoutOAuthService;
 
     @GetMapping
     @SneakyThrows
@@ -27,7 +25,7 @@ public class ImmoscoutController {
             @RequestParam("oauth_verifier") String oauthVerifier,
             @RequestParam("state") String state
     ) {
+        log.info("Token: " + oauthToken);
         oAuthProvider.retrieveAccessToken(oAuthConsumer, oauthVerifier);
-        immoscoutOAuthService.search();
     }
 }
