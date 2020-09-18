@@ -13,6 +13,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -50,11 +51,12 @@ public class OAuthUtils {
     }
 
     private String calculateSignature(Map<String, String> oauthHeaders, String uri) {
-        return new String(
+        return Base64.getEncoder().encodeToString(
                 HmacUtils.hmacSha1(
-                    calculateSignatureKey(),
-                    calculateBaseUrlString(oauthHeaders, uri)
-        ));
+                        calculateSignatureKey(),
+                        calculateBaseUrlString(oauthHeaders, uri)
+                )
+        );
     }
 
     @SneakyThrows
