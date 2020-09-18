@@ -1,10 +1,10 @@
 package com.karmanno.immobilensearchtelegrambot.controller;
 
+import com.karmanno.immobilensearchtelegrambot.auth.OAuthUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import oauth.signpost.OAuthConsumer;
-import oauth.signpost.OAuthProvider;
+import org.apache.commons.codec.digest.HmacUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RequiredArgsConstructor
 public class ImmoscoutController {
-    private final OAuthConsumer oAuthConsumer;
-    private final OAuthProvider oAuthProvider;
+    private final OAuthUtils oAuthUtils;
 
     @GetMapping
     @SneakyThrows
@@ -25,7 +24,9 @@ public class ImmoscoutController {
             @RequestParam("oauth_verifier") String oauthVerifier,
             @RequestParam("state") String state
     ) {
-        log.info("Token: " + oauthToken);
-        oAuthProvider.retrieveAccessToken(oAuthConsumer, oauthVerifier);
+        oAuthUtils.generateOAuthHeaders(
+                "https://rest.immobilienscout24.de/restapi/api/search/v1.0/search/radius?realestatetype=ApartmentRent&geocoordinates=52.512303;13.431191;1",
+                oauthToken
+        );
     }
 }
