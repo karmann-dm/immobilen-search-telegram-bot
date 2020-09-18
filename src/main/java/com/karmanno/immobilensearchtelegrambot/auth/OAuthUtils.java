@@ -60,8 +60,8 @@ public class OAuthUtils {
     @SneakyThrows
     private String calculateSignatureKey() {
         return URLEncoder.encode(
-                immoscoutProperties.getAuth().getConsumerSecret(),
-                oAuthConsumer.getConsumerSecret()
+                immoscoutProperties.getAuth().getConsumerSecret() + "&" + oAuthConsumer.getConsumerSecret(),
+                StandardCharsets.UTF_8.toString()
         );
     }
 
