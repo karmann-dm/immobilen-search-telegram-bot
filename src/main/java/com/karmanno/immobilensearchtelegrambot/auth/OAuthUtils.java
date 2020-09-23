@@ -71,10 +71,10 @@ public class OAuthUtils {
                         uriObject.getScheme() + "://" + uriObject.getAuthority() + "&",
                         StandardCharsets.UTF_8.toString()
                 ) +
-                URLEncoder.encode(
+                (uriObject.getQuery() != null ? URLEncoder.encode(
                         uriObject.getQuery(),
                         StandardCharsets.UTF_8.toString()
-                ) +
+                ) : "") +
                 URLEncoder.encode(
                         oauthHeaders.entrySet()
                                 .stream()

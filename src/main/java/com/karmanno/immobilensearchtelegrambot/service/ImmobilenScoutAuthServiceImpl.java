@@ -33,10 +33,11 @@ public class ImmobilenScoutAuthServiceImpl implements ImmobilenScoutAuthService 
                 immoscoutProperties.getUrl().getRequestToken(),
                 immoscoutProperties.getAuth().getConsumerSecret()
         ));
-        HttpEntity<Object> entity = new HttpEntity<>(new Object(), httpHeaders);
+        HttpEntity<String> entity = new HttpEntity<>("", httpHeaders);
+        log.info(entity.getHeaders().toString());
         HttpEntity<ImmoscoutRequestTokenResponse> response = restTemplate.postForEntity(
                 immoscoutProperties.getUrl().getRequestToken(),
-                new Object(),
+                entity,
                 ImmoscoutRequestTokenResponse.class
         );
         log.info(response.getBody().toString());
